@@ -1,0 +1,7 @@
+{
+  "name": "Parqueando-Front",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

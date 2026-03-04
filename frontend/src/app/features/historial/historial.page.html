@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Historial</ion-title>
+  </ion-toolbar>
+
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="filtro" (ionChange)="onFiltroChange()">
+      <ion-segment-button value="TODOS">
+        <ion-label>Todos</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="PENDIENTE">
+        <ion-label>Pendiente</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="CONFIRMADA">
+        <ion-label>Confirmada</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="CANCELADA">
+        <ion-label>Cancelada</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="COMPLETADA">
+        <ion-label>Completada</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="cargarHistorial($event)">
+    <ion-refresher-content pullingText="Desliza para actualizar"></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="empty" *ngIf="reservasFiltradas.length === 0">
+    <ion-icon name="time-outline"></ion-icon>
+    <h3>No hay reservas</h3>
+    <p>No se encontraron reservas para el filtro seleccionado.</p>
+  </div>
+
+  <ion-list *ngIf="reservasFiltradas.length > 0">
+    <ion-item
+      button
+      detail="true"
+      *ngFor="let r of reservasFiltradas"
+      (click)="abrirReserva(r)"
+    >
+      <ion-label>
+        <div class="row1">
+          <h2>{{ r.parqueadero }}</h2>
+          <ion-badge [color]="badgeColor(r.estado)">{{ r.estado }}</ion-badge>
+        </div>
+
+        <p class="sub">
+          {{ r.codigo }} • {{ r.vehiculo }}
+        </p>
+
+        <p class="sub">
+          Inicio: {{ r.inicio }} • Fin: {{ r.fin }}
+        </p>
+
+        <p class="meta">
+          Creada: {{ r.fechaCreacion }} • Total: ${{ r.total }}
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

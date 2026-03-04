@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ titulo }}</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="cancelar()">Volver</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label position="stacked">Marca</ion-label>
+    <ion-input [(ngModel)]="nuevoAuto.marca"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Modelo</ion-label>
+    <ion-input [(ngModel)]="nuevoAuto.modelo"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Placa</ion-label>
+    <ion-input [(ngModel)]="nuevoAuto.placa"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Color</ion-label>
+    <ion-input [(ngModel)]="nuevoAuto.color"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Fotos (opcional)</ion-label>
+    <input type="file" multiple (change)="onFilesSelected($event)" />
+  </ion-item>
+
+  <ion-button expand="block" (click)="guardar()">
+    {{ textoBoton }}
+  </ion-button>
+</ion-content>

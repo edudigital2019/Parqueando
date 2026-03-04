@@ -1,0 +1,99 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/detalle-parqueadero" color="dark"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="font-weight: 800; color: #111;">Pago Seguro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  
+  <div class="summary-card animate-fade-in">
+    <div class="spot-mini-info">
+      <img [src]="reserva?.parqueadero?.imagenUrl || 'assets/placeholder.jpg'" class="mini-thumb">
+      <div>
+        <h3>{{ reserva?.parqueadero?.titulo }}</h3>
+        <p>{{ reserva?.horas }} horas • {{ reserva?.parqueadero?.direccion }}</p>
+      </div>
+    </div>
+    
+    <div class="price-breakdown">
+      <div class="item">
+        <span>Subtotal (Estadía)</span>
+        <span>${{ (reserva?.total || 0) | number:'1.2-2' }}</span>
+      </div>
+      <div class="item">
+        <span>Tasa de plataforma (Seguro)</span>
+        <span>$0.25</span>
+      </div>
+      <div class="total-row">
+        <span>Total a Pagar</span>
+        <span>${{ ((reserva?.total || 0) + 0.25) | number:'1.2-2' }}</span>
+      </div>
+    </div>
+  </div>
+
+<h3 class="section-title">Vehículo</h3>
+
+<div class="payment-methods">
+  <div *ngFor="let v of vehiculos"
+       class="method-option"
+       [class.active]="idVehiculoSeleccionado === v.id"
+       (click)="seleccionarVehiculo(v)">
+
+    <div class="method-info">
+      <span>{{ v.marca }} {{ v.modelo }}</span>
+      <p>Placa: {{ v.placa }} • {{ v.color || 'Sin color' }}</p>
+    </div>
+
+    <ion-icon name="checkmark-circle"
+              class="check-icon"
+              *ngIf="idVehiculoSeleccionado === v.id">
+    </ion-icon>
+  </div>
+</div>
+
+<ion-button expand="block" fill="outline" (click)="irAgregarAuto()">
+  Agregar vehículo
+</ion-button>
+
+  <h3 class="section-title">Método de Pago</h3>
+  
+  <div class="payment-methods">
+    
+    <div *ngFor="let metodo of metodosPago" 
+         class="method-option" 
+         [class.active]="metodoSeleccionado === metodo.id"
+         (click)="seleccionarMetodo(metodo.id)">
+      
+      <div class="icon-wrapper" [ngClass]="{'deuna-brand': metodo.id === 'deuna'}">
+        <ion-icon [name]="metodo.icono"></ion-icon>
+      </div>
+
+      <div class="method-info">
+        <span>{{ metodo.nombre }}</span>
+        <p>{{ metodo.descripcion }}</p>
+      </div>
+      
+      <ion-icon name="checkmark-circle" 
+                class="check-icon" 
+                *ngIf="metodoSeleccionado === metodo.id">
+      </ion-icon>
+
+    </div>
+
+  </div>
+
+  <div class="action-container">
+    <ion-button expand="block" (click)="confirmarPago()" class="pay-button">
+      CONFIRMAR Y PAGAR
+    </ion-button>
+    
+    <p class="secure-text">
+      <ion-icon name="shield-checkmark-outline"></ion-icon> 
+      Transacción protegida por cifrado SSL de 256 bits
+    </p>
+  </div>
+
+</ion-content>
