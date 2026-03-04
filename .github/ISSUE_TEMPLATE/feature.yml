@@ -1,0 +1,19 @@
+name: Feature
+description: Nueva funcionalidad
+title: "[Feature]: "
+labels: ["feature"]
+body:
+  - type: textarea
+    id: descripcion
+    attributes:
+      label: Descripción
+      description: ¿Qué se debe implementar?
+    validations:
+      required: true
+  - type: textarea
+    id: criterios
+    attributes:
+      label: Criterios de aceptación
+      description: ¿Cómo se valida que está completo?
+    validations:
+      required: true
