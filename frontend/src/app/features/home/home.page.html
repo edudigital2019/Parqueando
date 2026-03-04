@@ -1,0 +1,106 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar style="--background: #f8f9fd;">
+    <div class="header-content">
+      <div class="user-welcome">
+        <ion-avatar>
+          <img [src]="avatarUrl" alt="Avatar" />
+        </ion-avatar>
+        <div class="text">
+          <p>Bienvenido de nuevo,</p>
+          <h2>{{ nombre }}</h2>
+        </div>
+      </div>
+
+      <ion-button fill="clear" color="dark" class="notif-btn">
+        <ion-icon name="notifications-outline"></ion-icon>
+        <span class="badge"></span>
+      </ion-button>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" style="--background: #f8f9fd;">
+
+  <!-- Reserva activa -->
+  <div class="status-card animate-fade-in" *ngIf="reservaActiva.activa">
+    <div class="card-header">
+      <span class="status-badge">🔴 En curso</span>
+      <span class="timer">
+        <ion-icon name="time-outline"></ion-icon>
+        {{ reservaActiva.tiempoRestante }}
+      </span>
+    </div>
+
+    <h3>{{ reservaActiva.lugar }}</h3>
+    <p class="plate">Tu vehículo: {{ reservaActiva.placa }}</p>
+
+    <div class="progress-bar">
+      <div class="progress-fill" [style.width.%]="reservaActiva.progreso"></div>
+    </div>
+
+    <div class="card-footer">
+      <span>Acumulado: ${{ reservaActiva.total }}</span>
+      <button class="extend-btn" (click)="extenderReserva()">Extender</button>
+    </div>
+  </div>
+
+  <!-- Acciones rápidas -->
+  <h3 class="section-title">Acciones Rápidas</h3>
+  <div class="quick-actions">
+    <div class="action-btn" (click)="irEscanearQR()">
+      <div class="icon-box blue">
+        <ion-icon name="scan-outline"></ion-icon>
+      </div>
+      <span>Escanear QR</span>
+    </div>
+
+    <div class="action-btn" (click)="irMisAutos()">
+      <div class="icon-box orange">
+        <ion-icon name="car-sport-outline"></ion-icon>
+      </div>
+      <span>Mis Autos</span>
+    </div>
+
+    <div class="action-btn" (click)="irRecargar()">
+      <div class="icon-box green">
+        <ion-icon name="wallet-outline"></ion-icon>
+      </div>
+      <span>Recargar</span>
+    </div>
+  </div>
+
+  <!-- Recientes -->
+  <h3 class="section-title">Volver a reservar</h3>
+
+  <div class="recent-list" *ngIf="recientes.length > 0; else sinRecientes">
+    <div class="recent-item" *ngFor="let item of recientes">
+      <div class="icon-placeholder">
+        <ion-icon name="location-outline"></ion-icon>
+      </div>
+
+      <div class="info">
+        <h4>{{ item.titulo }}</h4>
+        <p>{{ item.direccion }}</p>
+      </div>
+
+      <ion-button
+        fill="clear"
+        size="small"
+        (click)="irParqueadero(item.idParqueadero)"
+      >
+        Ir
+      </ion-button>
+    </div>
+  </div>
+
+  <ng-template #sinRecientes>
+    <div class="recent-item">
+      <div class="info">
+        <h4>Sin reservas recientes</h4>
+        <p>Aún no tienes reservas para mostrar.</p>
+      </div>
+    </div>
+  </ng-template>
+
+  <div style="height: 100px;"></div>
+</ion-content>

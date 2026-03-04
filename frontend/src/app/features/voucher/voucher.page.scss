@@ -1,0 +1,47 @@
+// Animación de entrada
+.animate-fade-in { animation: fadeIn 0.6s ease-out; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+.ticket-container {
+  background: white; border-radius: 20px; overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08); margin-bottom: 20px;
+}
+
+.ticket-header {
+  background: white; padding: 30px 20px 10px 20px; text-align: center;
+  .qr-box { margin-bottom: 15px; display: flex; justify-content: center; }
+  .booking-id { font-size: 28px; font-weight: 900; color: #111; margin: 10px 0 5px 0; letter-spacing: 2px; }
+  p { color: #888; font-size: 12px; margin: 0; }
+}
+
+// Línea divisoria punteada con círculos
+.ticket-divider {
+  position: relative; height: 30px; background: white; display: flex; align-items: center; justify-content: center;
+  .line { width: 85%; border-top: 2px dashed #eee; }
+  .circle {
+    position: absolute; width: 30px; height: 30px; background: #f8f9fd; border-radius: 50%; top: 0;
+    &.left { left: -15px; }
+    &.right { right: -15px; }
+  }
+}
+
+.ticket-body {
+  padding: 10px 25px 30px 25px;
+  .detail-row {
+    display: flex; justify-content: space-between; margin-bottom: 15px;
+    &:last-child { margin-bottom: 0; }
+    .item {
+      display: flex; flex-direction: column;
+      label { font-size: 10px; color: #999; font-weight: 700; margin-bottom: 4px; letter-spacing: 0.5px; }
+      span { font-size: 14px; color: #333; font-weight: 600; }
+      .price-text { font-size: 20px; color: #007AFF; font-weight: 800; }
+    }
+  }
+}
+
+// Estilos de botones (Tu código estaba bien aquí)
+.actions {
+  margin-top: 24px; display: flex; flex-direction: column; gap: 12px;
+  ion-button { --border-radius: 14px; height: 52px; font-weight: 700; margin: 0; }
+  .primary-btn { --background: #111; margin-top: 10px; }
+}

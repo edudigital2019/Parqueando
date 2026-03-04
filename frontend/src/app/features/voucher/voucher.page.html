@@ -1,0 +1,81 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title style="font-weight: 800; text-align: center;">Tu Reservación</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrar()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" style="--background: #f8f9fd;">
+  <div class="ticket-container animate-fade-in">
+
+    <div class="ticket-header">
+      <div class="qr-box">
+        <qrcode [qrdata]="qrData" [width]="200" [errorCorrectionLevel]="'M'" [margin]="2">
+        </qrcode>
+      </div>
+      <h2 class="booking-id">{{ codigoReserva }}</h2>
+      <p>Muestra este código al ingresar</p>
+    </div>
+
+    <div class="ticket-divider">
+      <div class="circle left"></div>
+      <div class="line"></div>
+      <div class="circle right"></div>
+    </div>
+
+    <div class="ticket-body">
+      <div class="detail-row">
+        <div class="item">
+          <label>PARQUEADERO</label>
+          <span>{{ data?.parqueadero?.titulo }}</span>
+        </div>
+      </div>
+
+      <div class="detail-row">
+        <div class="item">
+          <label>FECHA</label>
+          <span>{{ data?.fecha || 'Hoy, 28 Feb' }}</span>
+        </div>
+        <div class="item" style="text-align: right;">
+          <label>DURACIÓN</label>
+          <span>{{ data?.horas }} Horas</span>
+        </div>
+      </div>
+
+      <div class="detail-row">
+        <div class="item">
+          <label>VEHÍCULO</label>
+          <span>Placa: {{ data?.vehiculo?.placa || 'N/D' }}</span>
+        </div>
+        <div class="item" style="text-align: right;">
+          <label>TOTAL</label>
+          <span class="price-text">${{ totalPagar | number:'1.2-2' }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <ion-button expand="block" color="secondary" (click)="abrirMapas()">
+      <ion-icon name="navigate-outline" slot="start"></ion-icon>
+      Cómo llegar (GPS)
+    </ion-button>
+
+    <ion-button expand="block" color="success" (click)="contactarWhatsApp()">
+      <ion-icon name="logo-whatsapp" slot="start"></ion-icon>
+      Contactar Dueño
+    </ion-button>
+
+    <ion-button expand="block" fill="outline" (click)="descargarPDF()">
+      <ion-icon name="download-outline" slot="start"></ion-icon> Guardar PDF
+    </ion-button>
+
+    <ion-button expand="block" (click)="irAHome()" class="primary-btn">
+      LISTO
+    </ion-button>
+  </div>
+</ion-content>

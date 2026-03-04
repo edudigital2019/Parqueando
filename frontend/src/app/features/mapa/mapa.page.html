@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Mapa</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <!-- ✅ Buscador fijo -->
+  <div class="search-overlay">
+    <ion-item lines="none" class="search-item">
+      <ion-icon name="search-outline" slot="start"></ion-icon>
+
+      <ion-input
+        placeholder="Buscar por dirección o título..."
+        (ionInput)="buscar($event)">
+      </ion-input>
+
+      <ion-button fill="clear" size="small" (click)="buscar({ detail: { value: '' } })">
+        Limpiar
+      </ion-button>
+    </ion-item>
+  </div>
+
+  <!-- ✅ Mapa ocupa todo -->
+  <div id="map" class="leaflet-map"></div>
+
+</ion-content>

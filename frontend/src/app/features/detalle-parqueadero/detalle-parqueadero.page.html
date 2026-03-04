@@ -1,0 +1,159 @@
+<ion-content [fullscreen]="true" style="--background: #ffffff;">
+
+  <!-- HERO IMAGE -->
+  <div class="hero-header">
+    <img
+      [src]="getImagenPrincipal()"
+      class="main-image"
+      (error)="onImgError($event)"
+    />
+
+    <div class="overlay-buttons">
+      <div class="circular-btn" (click)="volver()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </div>
+      <div class="circular-btn">
+        <ion-icon name="heart-outline"></ion-icon>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-body">
+
+    <!-- TITLE -->
+    <div class="title-row">
+      <div>
+        <h1 class="spot-title">{{ parqueadero?.titulo }}</h1>
+        <p class="spot-address">
+          <ion-icon name="location-sharp"></ion-icon>
+          {{ parqueadero?.direccion }}
+        </p>
+      </div>
+
+      <div class="rating-chip">
+        <ion-icon name="star"></ion-icon>
+        <span>{{ parqueadero?.calificacionPromedio }}</span>
+      </div>
+    </div>
+
+    <!-- AMENITIES -->
+    <div class="amenities-grid">
+      <div class="amenity-item" *ngIf="parqueadero?.tieneCamara">
+        <ion-icon name="videocam-outline"></ion-icon><span>Cámara</span>
+      </div>
+      <div class="amenity-item" *ngIf="parqueadero?.tieneGuardia">
+        <ion-icon name="shield-checkmark-outline"></ion-icon><span>Guardia</span>
+      </div>
+      <div class="amenity-item" *ngIf="parqueadero?.tieneTecho">
+        <ion-icon name="umbrella-outline"></ion-icon><span>Techado</span>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <h3 class="section-label">Configura tu reserva</h3>
+
+    <div class="selection-card">
+
+      <!-- INICIO -->
+      <div class="select-item" (click)="openInicio = true">
+        <div class="icon-circle"><ion-icon name="calendar-outline"></ion-icon></div>
+        <div class="select-text">
+          <label>Inicio</label>
+          <span class="value">{{ formatFecha(fechaInicioIso) }}</span>
+        </div>
+        <ion-icon name="chevron-forward" class="arrow"></ion-icon>
+      </div>
+
+      <!-- FIN -->
+      <div class="select-item" (click)="openFin = true">
+        <div class="icon-circle"><ion-icon name="time-outline"></ion-icon></div>
+        <div class="select-text">
+          <label>Fin</label>
+          <span class="value">{{ formatFecha(fechaFinIso) }}</span>
+        </div>
+        <ion-icon name="chevron-forward" class="arrow"></ion-icon>
+      </div>
+
+      <!-- DURACIÓN -->
+      <div class="select-item">
+        <div class="icon-circle"><ion-icon name="time-outline"></ion-icon></div>
+        <div class="select-text">
+          <label>Duración</label>
+          <span class="value">{{ horas }} horas</span>
+        </div>
+
+        <div class="stepper" (click)="$event.stopPropagation()">
+          <button (click)="ajustarHoras(-1)">-</button>
+          <span>{{ horas }}</span>
+          <button (click)="ajustarHoras(1)" class="plus">+</button>
+        </div>
+      </div>
+
+      <!-- ESPACIO -->
+      <div class="select-item">
+        <div class="icon-circle"><ion-icon name="car-outline"></ion-icon></div>
+        <div class="select-text">
+          <label>Espacio</label>
+          <span class="value">A-12 (Planta Baja)</span>
+        </div>
+        <span class="change-link">Cambiar</span>
+      </div>
+
+    </div>
+
+  </div>
+</ion-content>
+
+<!-- FOOTER -->
+<div class="footer-payment">
+  <div class="price-summary">
+    <p>Precio Total</p>
+    <h2>${{ total | number:'1.2-2' }}</h2>
+  </div>
+  <button class="pay-btn" (click)="confirmarReserva()">Reservar Ahora</button>
+</div>
+
+<!-- MODAL INICIO -->
+<ion-modal [isOpen]="openInicio" (didDismiss)="openInicio = false">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Selecciona inicio</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="openInicio = false">Cerrar</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      <ion-datetime
+        presentation="date-time"
+        [value]="fechaInicioIso"
+        (ionChange)="onCambioInicio($event); openInicio = false">
+      </ion-datetime>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+<!-- MODAL FIN -->
+<ion-modal [isOpen]="openFin" (didDismiss)="openFin = false">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Selecciona fin</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="openFin = false">Cerrar</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      <ion-datetime
+        presentation="date-time"
+        [value]="fechaFinIso"
+        (ionChange)="onCambioFin($event); openFin = false">
+      </ion-datetime>
+    </ion-content>
+  </ng-template>
+</ion-modal>

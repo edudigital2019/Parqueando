@@ -1,0 +1,33 @@
+.empty {
+  text-align: center;
+  margin-top: 80px;
+
+  ion-icon {
+    font-size: 70px;
+    color: #999;
+  }
+
+  h3 {
+    margin-top: 10px;
+  }
+}
+
+.auto-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.auto-info h2 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.auto-info p {
+  margin: 2px 0;
+  font-weight: bold;
+}
+
+.auto-info small {
+  color: gray;
+}

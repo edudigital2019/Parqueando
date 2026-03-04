@@ -1,0 +1,30 @@
+.form-container {
+  padding-top: 20px;
+}
+
+.icon-header {
+  display: flex; justify-content: center; margin-bottom: 30px;
+  .circle {
+    width: 80px; height: 80px; background: #f0f4ff; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    ion-icon { font-size: 40px; color: #2D6BFF; }
+  }
+}
+
+.input-group {
+  margin-bottom: 20px;
+  label { display: block; font-weight: 700; margin-bottom: 8px; color: #333; }
+  .custom-input {
+    --background: #f8f9fd; --padding-start: 15px; --padding-end: 15px;
+    --border-radius: 12px; height: 50px;
+  }
+}
+
+.toggle-group {
+  display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;
+  label { font-weight: 600; color: #555; }
+}
+
+.save-btn {
+  --background: #111; --border-radius: 16px; height: 50px; font-weight: 700;
+}

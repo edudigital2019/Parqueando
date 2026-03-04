@@ -1,0 +1,43 @@
+<ion-content class="ion-padding">
+  <div class="auth-container">
+    
+    <div class="header">
+      <div class="logo-box">
+        <ion-icon name="car-sport"></ion-icon>
+      </div>
+      <h2>Crear Cuenta</h2>
+      <p>Tu espacio seguro en la ciudad</p>
+    </div>
+
+    <div class="form-container animate-up">
+      <div class="input-group">
+        <ion-item lines="none" class="custom-input">
+          <ion-icon name="person-outline" slot="start"></ion-icon>
+          <ion-input type="text" placeholder="Nombre completo" [(ngModel)]="usuario.nombre"></ion-input>
+        </ion-item>
+
+        <ion-item lines="none" class="custom-input mt-3">
+          <ion-icon name="mail-outline" slot="start"></ion-icon>
+          <ion-input type="email" placeholder="Correo electrónico" [(ngModel)]="usuario.email"></ion-input>
+        </ion-item>
+
+        <ion-item lines="none" class="custom-input mt-3">
+          <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+          <ion-input [type]="verPassword ? 'text' : 'password'" placeholder="Contraseña" [(ngModel)]="usuario.password"></ion-input>
+          <ion-button slot="end" fill="clear" color="medium" (click)="verPassword = !verPassword">
+            <ion-icon [name]="verPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </div>
+
+      <ion-button expand="block" class="main-btn mt-4" (click)="registrarUsuario()">
+        REGISTRARSE
+      </ion-button>
+
+      <div class="footer-links">
+        <p>¿Ya tienes cuenta? <span (click)="volverAlLogin()">Ingresar</span></p>
+      </div>
+    </div>
+
+  </div>
+</ion-content>

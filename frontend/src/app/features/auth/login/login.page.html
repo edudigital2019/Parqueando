@@ -1,0 +1,44 @@
+<ion-content class="ion-padding" style="--background: #ffffff;">
+  <div
+    style="display: flex; flex-direction: column; height: 100%; justify-content: center; max-width: 400px; margin: 0 auto;">
+
+    <div style="text-align: center; margin-bottom: 50px;">
+      <div
+        style="width: 90px; height: 90px; background: #111; border-radius: 24px; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+        <ion-icon name="car-sport" style="font-size: 45px; color: #fff;"></ion-icon>
+      </div>
+      <h1 style="font-weight: 900; color: #111; margin: 0; font-size: 32px; letter-spacing: -0.5px;">ParqueAndo</h1>
+      <p style="color: #888; margin-top: 5px; font-size: 16px;">Tu espacio seguro en la ciudad</p>
+    </div>
+
+    <div
+      style="background: #F7F7F7; border-radius: 18px; padding: 0 20px; display: flex; align-items: center; margin-bottom: 15px; height: 60px; border: 1px solid transparent; transition: all 0.3s;">
+      <ion-icon name="mail" style="color: #aaa; margin-right: 15px; font-size: 22px;"></ion-icon>
+      <input type="email" placeholder="Correo electrónico" [(ngModel)]="correo" [ngModelOptions]="{standalone:true}"
+        style="border: none; background: transparent; flex: 1; outline: none; height: 100%; font-size: 16px; font-weight: 500; color: #333;" />
+    </div>
+
+    <div
+      style="background: #F7F7F7; border-radius: 18px; padding: 0 20px; display: flex; align-items: center; margin-bottom: 30px; height: 60px;">
+      <ion-icon name="lock-closed" style="color: #aaa; margin-right: 15px; font-size: 22px;"></ion-icon>
+      <input type="password" placeholder="Contraseña" [(ngModel)]="password" [ngModelOptions]="{standalone:true}"
+        style="border: none; background: transparent; flex: 1; outline: none; height: 100%; font-size: 16px; font-weight: 500; color: #333;" />
+    </div>
+
+    <ion-button expand="block" (click)="ingresar()" class="main-btn"
+      style="--background: #111; --color: #fff; --border-radius: 18px; height: 60px; font-weight: 700; font-size: 17px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
+      INGRESAR
+    </ion-button>
+
+    <div style="text-align: center; margin-top: 30px;">
+      <p style="color: #999; font-size: 14px;">¿No tienes cuenta?</p>
+
+      <ion-button fill="clear" (click)="crearCuenta()"
+        style="--color: #2D6BFF; font-weight: 700; text-transform: none; font-size: 16px;">
+        Crear Cuenta
+      </ion-button>
+
+    </div>
+
+  </div>
+</ion-content>
