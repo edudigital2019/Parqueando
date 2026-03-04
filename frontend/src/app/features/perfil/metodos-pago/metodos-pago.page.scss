@@ -1,0 +1,57 @@
+.section-info {
+  margin-bottom: 25px;
+  p { color: #888; font-size: 14px; line-height: 1.5; padding: 0 5px; }
+}
+
+.cards-container {
+  display: flex; flex-direction: column; gap: 20px;
+}
+
+.payment-card {
+  height: 180px; border-radius: 24px; padding: 25px; color: white;
+  position: relative; overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease;
+
+  &:active { transform: scale(0.96); }
+
+  .card-top {
+    display: flex; justify-content: space-between; align-items: center;
+    ion-icon { font-size: 32px; opacity: 0.9; }
+    .main-badge { 
+      background: rgba(255,255,255,0.2); backdrop-filter: blur(5px);
+      font-size: 11px; font-weight: 700; padding: 5px 12px; border-radius: 20px;
+    }
+  }
+
+  .card-middle {
+    margin-top: 30px;
+    h2 { margin: 0; font-size: 24px; font-weight: 700; letter-spacing: 2px; }
+  }
+
+  .card-bottom {
+    position: absolute; bottom: 25px; left: 25px; right: 25px;
+    display: flex; justify-content: space-between; align-items: flex-end;
+    .holder { font-weight: 600; font-size: 16px; opacity: 0.9; }
+    .expiry { font-size: 14px; opacity: 0.8; }
+  }
+}
+
+.add-container {
+  margin-top: 40px;
+  .btn-add-new {
+    width: 100%; height: 60px; background: white; border: 2px dashed #ddd;
+    border-radius: 20px; color: #111; font-weight: 700; font-size: 15px;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    &:active { background: #f0f0f0; }
+  }
+}
+
+.animate-slide-in {
+  animation: slideIn 0.5s ease-out forwards;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}

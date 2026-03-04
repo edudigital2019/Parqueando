@@ -1,0 +1,48 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/app/tabs/perfil" text="" color="dark"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="font-weight: 800;">Métodos de Pago</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" style="--background: #f8f9fd;">
+  
+  <div class="section-info">
+    <p>Gestiona tus tarjetas y cuentas para pagos rápidos y seguros.</p>
+  </div>
+
+  <div class="cards-container">
+    <div class="payment-card animate-slide-in" 
+         *ngFor="let m of metodos" 
+         [style.background]="m.color"
+         (click)="opcionesMetodo(m)">
+      
+      <div class="card-top">
+        <ion-icon [name]="m.tipo === 'tarjeta' ? 'card-outline' : 'wallet-outline'"></ion-icon>
+        <span class="main-badge" *ngIf="m.principal">Principal</span>
+      </div>
+
+      <div class="card-middle">
+        <h2 *ngIf="m.tipo === 'tarjeta'">{{ m.numero }}</h2>
+        <h2 *ngIf="m.tipo === 'deuna'">{{ m.usuario }}</h2>
+      </div>
+
+      <div class="card-bottom">
+        <span class="holder">{{ m.tipo === 'tarjeta' ? m.franquicia : m.nombre }}</span>
+        <span class="expiry" *ngIf="m.expiracion">{{ m.expiracion }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="add-container">
+    <button class="btn-add-new" (click)="agregarMetodo()">
+      <ion-icon name="add-outline"></ion-icon>
+      Añadir nuevo método
+    </button>
+  </div>
+
+  <div style="height: 100px;"></div>
+
+</ion-content>
